@@ -57,7 +57,6 @@
   .fatal button:hover{color:var(--ink)}
 
   .shell{height:100dvh;display:flex}
-  /* ============ SIDEBAR ============ */
   .side{width:236px;flex:none;border-right:1px solid var(--line-soft);background:var(--bg);display:flex;flex-direction:column;min-height:0}
   .side-brand{display:flex;align-items:center;gap:10px;padding:16px 14px 12px}
   .sb-name{font:600 14px var(--sans)}
@@ -90,7 +89,6 @@
   .side-conn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
   .main{flex:1;min-width:0;display:flex;flex-direction:column}
-  /* ============ HOME ============ */
   .home{flex:1;display:none;flex-direction:column;min-height:0;overflow-y:auto}
   .home.on{display:flex}
   .home-hero{flex:none;display:flex;flex-direction:column;align-items:center;text-align:center;padding:9vh 24px 30px}
@@ -103,8 +101,6 @@
   .hchip:hover{color:var(--ink);border-color:var(--bg4);background:var(--bg3)}
   .home-recents{flex:none;width:min(880px,94%);margin:6px auto 30px;padding:0 4px}
   .hr-head{display:flex;align-items:center;font:500 9px var(--mono);letter-spacing:.24em;color:var(--ink-faint);margin:14px 2px 10px}
-  .hr-head .lnk{margin-left:auto;background:none;border:0;color:var(--ink-dim);font:500 10.5px var(--mono);cursor:pointer}
-  .hr-head .lnk:hover{color:var(--accent)}
   .hr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
   .rcard{display:flex;align-items:center;gap:11px;text-align:left;padding:11px 12px;border:1px solid var(--line-soft);background:var(--bg2);border-radius:13px;cursor:pointer;transition:border-color .15s,background .15s}
   .rcard:hover{border-color:var(--bg4);background:var(--bg3)}
@@ -113,7 +109,6 @@
   .rc-name{display:block;font:600 12.5px var(--sans);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .rc-time{display:block;font:400 9.5px var(--mono);color:var(--ink-faint);margin-top:3px}
 
-  /* ============ WORK ============ */
   .work{flex:1;display:none;flex-direction:column;min-height:0}
   .work.on{display:flex}
   .topbar{height:52px;flex:none;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--line-soft);background:rgba(10,10,10,.82);backdrop-filter:blur(14px);z-index:500}
@@ -215,7 +210,6 @@
   .task.nudge{animation:tnudge .3s cubic-bezier(.22,1,.36,1)}
   @keyframes tnudge{0%{transform:translateX(0)}40%{transform:translateX(6px)}70%{transform:translateX(-2px)}100%{transform:translateX(0)}}
 
-  /* ============ COMPOSER ============ */
   .composer{flex:none;padding:12px 16px 16px}
   .composer-box{border:1px solid var(--line);border-radius:18px;background:var(--bg2);transition:border-color .15s,box-shadow .15s;box-shadow:0 2px 12px rgba(0,0,0,.25)}
   .composer-box:focus-within{border-color:var(--ink-faint);box-shadow:0 4px 20px rgba(0,0,0,.35)}
@@ -232,9 +226,8 @@
   .toolbtn.on{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
   .toolbtn svg{width:12px;height:12px;flex:none}
   .toolbtn .tchev2{width:10px;height:10px;color:var(--ink-faint)}
-  .pop2{position:absolute;bottom:calc(100% + 10px);left:0;width:300px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:8px;display:none;z-index:700;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  .pop2{position:absolute;bottom:calc(100% + 10px);left:0;width:300px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:8px;display:none;z-index:700;box-shadow:0 20px 50px rgba(0,0,0,.6);max-height:70vh;overflow-y:auto}
   .pop2.open{display:block;animation:rise .18s ease}
-  .pop2.right{left:auto;right:0}
   .lhead{font:500 9px var(--mono);letter-spacing:.24em;color:var(--ink-faint);padding:6px 10px 8px}
   .litem{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;padding:8px 10px;border:0;background:none;border-radius:9px;cursor:pointer}
   .litem:hover{background:var(--bg3)}
@@ -461,7 +454,6 @@
 
 <div class="shell">
 
-  <!-- ============ SIDEBAR ============ -->
   <aside class="side">
     <div class="side-brand">
       <span id="sideMark" style="display:flex"></span>
@@ -481,18 +473,16 @@
 
   <div class="main">
 
-    <!-- ============ HOME ============ -->
     <div class="home on" id="homeView">
       <div class="home-hero">
         <h1 class="home-h"><span id="homeT1"></span><span class="h2" id="homeT2"></span></h1>
-        <p class="home-sub">Describe it — Union-α plans the build, streams the code file by file, ticks off each task and double-checks the result. Any OpenAI-compatible key works.</p>
+        <p class="home-sub">Describe it — Union-α plans the build, streams the code live into the editor and preview, ticks off each task and double-checks the result. Any OpenAI-compatible key works.</p>
         <div class="home-comp" id="homeComposerSlot"></div>
         <div class="home-chips" id="homeChips"></div>
       </div>
       <div class="home-recents" id="homeRecents" style="display:none"></div>
     </div>
 
-    <!-- ============ WORK ============ -->
     <div class="work" id="workView">
       <header class="topbar">
         <input class="proj-name" id="projName" spellcheck="false" autocomplete="off" />
@@ -550,7 +540,7 @@
                 <div class="inner">
                   <div class="alpha">α</div>
                   <div class="t1">No output yet</div>
-                  <div class="t2">Send a prompt — the build streams in live,<br>then renders itself right here. Drop an .html file to iterate on it.</div>
+                  <div class="t2">Send a prompt — the code streams in live<br>and the preview builds itself as it goes.</div>
                 </div>
               </div>
               <div class="device-wrap" id="deviceWrap">
@@ -609,7 +599,6 @@
   </div>
 </div>
 
-<!-- ============ COMPOSER (single node, moves between slots) ============ -->
 <div class="composer" id="composer" style="display:none">
   <div class="composer-box">
     <div class="refine" id="refineRow"></div>
@@ -621,7 +610,7 @@
       </div>
       <div class="libswrap">
         <button class="toolbtn" id="libsBtn"><span data-ic="layers" style="display:flex"></span><span id="libsLabel">Libraries</span><span class="tchev2" data-ic="chevDown" style="display:flex"></span></button>
-        <div class="pop2 right" id="libsPop"></div>
+        <div class="pop2" id="libsPop"></div>
       </div>
       <button class="toolbtn" id="thinkBtn" style="display:none"><span data-ic="brain" style="display:flex"></span><span>Think</span></button>
       <button class="enh" id="enhBtn" title="Enhance prompt with the model" data-ic="sparkles"></button>
@@ -807,24 +796,24 @@ var PROVIDERS={
 /* ============ STACKS ============ */
 var LANGS={
   'multi':{label:'HTML · CSS · JS',short:'HTML·CSS·JS',desc:'Separate files, classic web',
-    fmt:'OUTPUT FORMAT: split the build into fenced blocks in this order: ```html:index.html , ```css:styles.css and ```js:app.js . index.html links them relatively — a stylesheet link before </head> and a script tag before </body>. The playground assembles them for the live preview. Progress markers: the moment plan item N is complete, write its marker on its own line inside the code — HTML: <!-- ✓ N --> ; CSS or JS: /* ✓ N */ — in order (✓ 1, ✓ 2, …). Markers are stripped automatically before preview, copy and download.'},
+    fmt:'OUTPUT FORMAT: split the build into fenced blocks in this order: ```html:index.html , ```css:styles.css and ```js:app.js . index.html links them relatively — a stylesheet link before the closing head tag and a script tag before the closing body tag. The playground assembles them for the live preview. Use EXACTLY these file names. Progress markers: the moment plan item N is complete, write its marker on its own line inside the code — HTML: <!-- ✓ N --> ; CSS or JS: /* ✓ N */ — in order (✓ 1, ✓ 2, …). Markers are stripped automatically before preview, copy and download.'},
   'single':{label:'Single-file HTML',short:'Single HTML',desc:'Everything inline, one file',
     fmt:'OUTPUT FORMAT: exactly ONE fenced block ```html:index.html containing the complete page with all CSS inside a <style> tag and all JavaScript inside a <script> tag, inline. Progress markers: the moment plan item N is complete, write its marker on its own line inside the code — <!-- ✓ N --> in HTML regions, /* ✓ N */ in CSS/JS regions — in order. Markers are stripped automatically.'},
   'react-ts':{label:'React 18 · TypeScript',short:'React·TS',desc:'JSX + types, compiled in-browser',
-    fmt:'OUTPUT FORMAT: React 18 + TypeScript, compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — shell: <!DOCTYPE html> with meta viewport, title, these scripts in <head>: react and react-dom UMD production builds from unpkg (react@18/umd/react.production.min.js, react-dom@18/umd/react-dom.production.min.js), plus https://unpkg.com/@babel/standalone/babel.min.js ; optional <link rel="stylesheet" href="styles.css"> ; body contains <div id="root"></div> and <script type="text/babel" data-presets="react,typescript" src="app.tsx"><\/script> before </body>. (2) ```tsx:app.tsx — the whole app in one file: NO import statements (use globals — destructure const { useState, useEffect, useRef } = React;), render with ReactDOM.createRoot(document.getElementById("root")).render(<App/>), real TypeScript types (interfaces, typed props/state). (3) optional ```css:styles.css . Do NOT use progress markers.'},
+    fmt:'OUTPUT FORMAT: React 18 + TypeScript, compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — shell: <!DOCTYPE html> with meta viewport and title; in <head>: react and react-dom UMD production builds from unpkg (react@18/umd/react.production.min.js and react-dom@18/umd/react-dom.production.min.js), plus https://unpkg.com/@babel/standalone/babel.min.js ; optional <link rel="stylesheet" href="styles.css"> ; body contains <div id="root"></div> and <script type="text/babel" data-presets="react,typescript" src="app.tsx"><\/script> before the closing body tag. (2) ```tsx:app.tsx — the whole app in one file: NO import statements (use globals — const { useState, useEffect, useRef } = React;), render with ReactDOM.createRoot(document.getElementById("root")).render(<App/>), real TypeScript types (interfaces, typed props/state). (3) optional ```css:styles.css . Use EXACTLY these file names. Do NOT use progress markers.'},
   'react-js':{label:'React 18 · JavaScript',short:'React·JS',desc:'JSX, no types, compiled in-browser',
-    fmt:'OUTPUT FORMAT: React 18 + JavaScript (JSX), compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — shell with react@18 and react-dom@18 UMD production builds + https://unpkg.com/@babel/standalone/babel.min.js in <head>, optional styles link, <div id="root"></div> and <script type="text/babel" data-presets="react" src="app.jsx"><\/script> before </body>. (2) ```jsx:app.jsx — the whole app in one file: NO import statements (const { useState, useEffect } = React), ReactDOM.createRoot(...).render(<App/>). (3) optional ```css:styles.css . Do NOT use progress markers.'},
+    fmt:'OUTPUT FORMAT: React 18 + JavaScript (JSX), compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — shell with react@18 and react-dom@18 UMD production builds plus https://unpkg.com/@babel/standalone/babel.min.js in <head>, optional styles link, <div id="root"></div> and <script type="text/babel" data-presets="react" src="app.jsx"><\/script> before the closing body tag. (2) ```jsx:app.jsx — the whole app in one file: NO import statements (const { useState, useEffect } = React), ReactDOM.createRoot(...).render(<App/>). (3) optional ```css:styles.css . Use EXACTLY these file names. Do NOT use progress markers.'},
   'vue':{label:'Vue 3',short:'Vue 3',desc:'Global build, template-in-JS',
-    fmt:'OUTPUT FORMAT: Vue 3 via CDN global build. Fenced blocks: (1) ```html:index.html — shell with <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"><\/script> in <head>, optional <link rel="stylesheet" href="styles.css">, <div id="app"></div> and <script src="app.js"><\/script> before </body>. (2) ```js:app.js — const { createApp, ref, computed, onMounted, watch } = Vue; createApp({ setup(){ … return { … } }, template: ` …full HTML template… ` }).mount("#app") — template as a template string, no SFC, no imports. (3) optional ```css:styles.css . Do NOT use progress markers.'},
+    fmt:'OUTPUT FORMAT: Vue 3 via CDN global build. Fenced blocks: (1) ```html:index.html — shell with <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"><\/script> in <head>, optional <link rel="stylesheet" href="styles.css">, <div id="app"></div> and <script src="app.js"><\/script> before the closing body tag. (2) ```js:app.js — const { createApp, ref, computed, onMounted, watch } = Vue; createApp({ setup(){ … return { … } }, template: ` …full HTML template… ` }).mount("#app") — template as a template string, no SFC, no imports. (3) optional ```css:styles.css . Use EXACTLY these file names. Do NOT use progress markers.'},
   'ts':{label:'Vanilla TypeScript',short:'TS',desc:'Typed DOM code, compiled in-browser',
-    fmt:'OUTPUT FORMAT: vanilla TypeScript compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — full markup with semantic structure and ids/data-attributes for hooks, optional <link rel="stylesheet" href="styles.css">, plus <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script> and <script type="text/babel" data-presets="typescript" src="app.ts"><\/script> before </body>. (2) ```ts:app.ts — typed vanilla TS using DOM APIs (querySelector, event listeners, typed state interfaces). (3) optional ```css:styles.css . Do NOT use progress markers.'}
+    fmt:'OUTPUT FORMAT: vanilla TypeScript compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — full markup with semantic structure and ids/data-attributes for hooks, optional <link rel="stylesheet" href="styles.css">, plus <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script> and <script type="text/babel" data-presets="typescript" src="app.ts"><\/script> before the closing body tag. (2) ```ts:app.ts — typed vanilla TS using DOM APIs (querySelector, event listeners, typed state interfaces). (3) optional ```css:styles.css . Use EXACTLY these file names. Do NOT use progress markers.'}
 };
 
 /* ============ UI LIBRARIES ============ */
 var LIBS={
   tailwind:{label:'Tailwind CSS',desc:'utility-first classes',use:'author styling with Tailwind utility classes',
     tags:['<script src="https://cdn.tailwindcss.com"><\/script>']},
-  daisyui:{label:'DaisyUI',desc:'Tailwind component classes',use:'use component classes like btn, card, navbar, badge (requires Tailwind — its tag is included automatically)',
+  daisyui:{label:'DaisyUI',desc:'Tailwind component classes',use:'use component classes like btn, card, navbar, badge (Tailwind is included automatically)',
     tags:['<script src="https://cdn.tailwindcss.com"><\/script>','<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />']},
   bootstrap:{label:'Bootstrap 5',desc:'grid + components',use:'use Bootstrap grid and component classes',
     tags:['<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/css/bootstrap.min.css" rel="stylesheet">','<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"><\/script>']},
@@ -855,6 +844,7 @@ var BASE_PROMPT =
   '1. One or two short sentences describing what you are about to build.\n' +
   '2. A plan: a fenced block tagged "tasks" containing 2-6 checklist lines, one per part of the build. Format each line exactly like "- [ ] Short task" and keep each under 8 words.\n' +
   '3. The code: fenced blocks as specified below, output in the SAME order as the plan tasks so each task maps to a part. After each closed code block, add one short line noting the file is done.\n' +
+  'CRITICAL: output each file EXACTLY ONCE. Never re-emit or repeat a file you already output in the same reply — if you need to adjust it, output it once, complete and final.\n' +
   'General rules:\n' +
   '- When changing an existing project, output the FULL new content of every file that changes; unchanged files may be omitted (they are kept).\n' +
   '- All code must run when opened in a browser. CDN links and Google Fonts are allowed; local files are not.\n' +
@@ -864,7 +854,7 @@ var BASE_PROMPT =
   '- Keep prose outside code blocks to 1-2 short sentences.\n\n';
 
 var THINK_ADDENDUM =
-  '\nTHINKING MODE: Begin your reply with a <think> block containing your brief planning reasoning (5-10 sentences: requirements, layout, palette, structure). Close it with </think>, then continue with the normal reply format. Never mention the think block outside itself.\n';
+  '\nTHINKING MODE: Begin your reply with a <think> block containing your brief planning reasoning (5-10 sentences: requirements, layout, palette, file structure). Close it with </think>, then continue with the normal reply format. Never mention the think block outside itself.\n';
 
 var ENHANCE_SYS =
   'You rewrite rough product ideas into crisp, detailed prompts for a single-page HTML generator. ' +
@@ -914,7 +904,7 @@ function effectiveMaxTok(model,kind){
   return Math.max(256,Math.min(want,cap));
 }
 var state={
-  streaming:false, enhancing:false, mode:'build',
+  streaming:false, enhancing:false, mode:'build', livePrev:false,
   ctrl:null, enhCtrl:null,
   files:[], code:'', activeFile:'', pinFile:false,
   prevFiles:[], userLockedTab:false, lastPrompt:'', lastUsage:null
@@ -1043,7 +1033,13 @@ function friendlyNetErr(e){
     return 'Network or CORS blocked — this endpoint may not allow direct browser calls. Use a proxy via Base URL.';
   return m||'Unknown error';
 }
-function cloneFiles(fs){ return (fs||[]).map(function(f){ return {path:f.path,content:f.content}; }); }
+/* normalize a file path for identity comparison: trim, strip ./, lowercase */
+function normPath(p){
+  return String(p||'').trim().replace(/^\.\//,'').replace(/^\/+/,'').toLowerCase();
+}
+function cloneFiles(fs){
+  return (fs||[]).map(function(f){ return {path:f.path,lang:f.lang,content:f.content}; });
+}
 function blurInUp(el,text,baseDelay){
   if(REDUCED){ el.textContent=text; return; }
   el.textContent='';
@@ -1143,9 +1139,23 @@ function parseMessage(src){
         if(!closed)out.open={kind:'tasks',len:content.length};
       }else{
         var path=info.path||defaultPathFor(info.lang,fi);
-        var f={path:path,lang:info.lang||langFromPath(path),content:stripMarkers(content),open:!closed};
-        out.files.push(f);
-        if(!closed)out.open={kind:'file',file:f};
+        /* NEWEST WINS: if the model re-emits a file (same path, any casing),
+           replace the earlier entry instead of keeping both */
+        var norm=normPath(path);
+        var idx=-1;
+        for(var k=0;k<out.files.length;k++){
+          if(normPath(out.files[k].path)===norm){ idx=k; break; }
+        }
+        if(idx!==-1){
+          out.files[idx].content=stripMarkers(content);
+          out.files[idx].open=!closed;
+          if(info.lang)out.files[idx].lang=info.lang;
+          if(!closed)out.open={kind:'file',file:out.files[idx]};
+        }else{
+          var f={path:path,lang:info.lang||langFromPath(path),content:stripMarkers(content),open:!closed};
+          out.files.push(f);
+          if(!closed)out.open={kind:'file',file:f};
+        }
         fi++;
       }
       if(!closed)break;
@@ -1158,13 +1168,14 @@ function parseMessage(src){
 }
 function mergeStream(prev,cur){
   var map=new Map();
-  (prev||[]).forEach(function(f){ map.set(f.path,{path:f.path,lang:f.lang,content:f.content,status:''}); });
+  (prev||[]).forEach(function(f){ map.set(normPath(f.path),{path:f.path,lang:f.lang,content:f.content,status:''}); });
   (cur||[]).forEach(function(f){
-    var p=map.get(f.path);
+    var k=normPath(f.path);
+    var p=map.get(k);
     var st;
     if(!p)st='added';
     else st=(p.content===f.content)?'':'modified';
-    map.set(f.path,{path:f.path,lang:f.lang,content:f.content,status:f.open?'writing':st,open:!!f.open});
+    map.set(k,{path:f.path,lang:f.lang,content:f.content,status:f.open?'writing':st,open:!!f.open});
   });
   var arr=[];
   map.forEach(function(v){ arr.push(v); });
@@ -1172,22 +1183,25 @@ function mergeStream(prev,cur){
 }
 function computeMerged(prev,cur){
   var map=new Map();
-  (prev||[]).forEach(function(f){ map.set(f.path,{path:f.path,lang:f.lang,content:f.content,status:''}); });
+  (prev||[]).forEach(function(f){ map.set(normPath(f.path),{path:f.path,lang:f.lang,content:f.content,status:''}); });
   (cur||[]).forEach(function(f){
-    var p=map.get(f.path);
+    var k=normPath(f.path);
+    var p=map.get(k);
     var st=!p?'added':((p.content===f.content)?'':'modified');
-    map.set(f.path,{path:f.path,lang:f.lang,content:f.content,status:st});
+    map.set(k,{path:f.path,lang:f.lang,content:f.content,status:st});
   });
   var arr=[];
   map.forEach(function(v){ arr.push(v); });
   return arr;
 }
-/* inline external scripts while PRESERVING tag attributes (type="text/babel", data-presets…) */
+/* inline an external script while PRESERVING the tag's attributes
+   (type="text/babel", data-presets=…) — the closing tag literal must
+   be broken up so this inline script itself is never terminated */
 function inlineScript(html,re,content){
   return html.replace(re,function(m){
     var open=m.slice(0,m.indexOf('>')+1);
     open=open.replace(/\ssrc=["'][^"']*["']/i,'');
-    return open+content+'</script>';
+    return open+content+'<'+'/script>';
   });
 }
 function ensureLibs(html){
@@ -1214,13 +1228,15 @@ function ensureLibs(html){
 }
 function assemble(files){
   var fs=files||[];
-  var main=fs.find(function(f){return /^index\.html?$/i.test(f.path);})
-        || fs.find(function(f){return /\.html?$/i.test(f.path);})
-        || fs[0];
+  /* pick the LAST index.html (newest) — defensive against any leftover dupes */
+  var main=null;
+  fs.forEach(function(f){ if(/^index\.html?$/i.test(f.path)) main=f; });
+  if(!main){ fs.forEach(function(f){ if(/\.html?$/i.test(f.path)) main=f; }); }
+  if(!main) main=fs[0];
   if(!main)return '';
   var html=main.content;
   fs.forEach(function(f){
-    if(f===main||f.path===main.path)return;
+    if(f===main||normPath(f.path)===normPath(main.path))return;
     var base=f.path.split('/').pop();
     if(/\.css$/i.test(f.path)){
       var tag='<style data-file="'+esc(base)+'">\n'+f.content+'\n</style>';
@@ -1649,7 +1665,7 @@ function setFiles(files,opts){
     if(openF)state.activeFile=openF.path;
   }
   codeStreaming=!!opts.streaming;
-  if(codeStreaming&&!opts.final&&nowMs()-lastHl<100)return;
+  if(codeStreaming&&!opts.final&&nowMs()-lastHl<80)return;
   lastHl=nowMs();
   var f=files.find(function(x){return x.path===state.activeFile;});
   $('emptyCode').style.display=files.length?'none':'grid';
@@ -1696,6 +1712,7 @@ var PREVIEW_HOOK='<script>(function(){function r(m){try{parent.postMessage({__ua
 var frame=$('frame'), deviceWrap=$('deviceWrap'), deviceInner=$('deviceInner');
 frame.addEventListener('load',function(){
   frame.classList.add('show');
+  if(state.livePrev)return; /* no wipe during live streaming updates */
   var w=$('devWipe');
   w.classList.remove('run'); void w.offsetWidth; w.classList.add('run');
 });
@@ -1710,6 +1727,7 @@ function setErrChip(){
 window.addEventListener('message',function(e){
   var d=e.data;
   if(!d||d.__uap!==1)return;
+  if(state.livePrev)return; /* suppress preview errors while the build is streaming */
   var msg=String(d.message||'Unknown error');
   if(previewErrors.indexOf(msg)!==-1||previewErrors.length>=4)return;
   previewErrors.push(msg);
@@ -1717,10 +1735,20 @@ window.addEventListener('message',function(e){
 });
 function runPreview(code){
   if(!code){ toast('Nothing to preview yet','err'); return; }
+  state.livePrev=false;
   previewErrors=[]; setErrChip();
   $('emptyStage').style.display='none';
   deviceWrap.classList.add('show');
   frame.classList.remove('show');
+  frame.srcdoc=PREVIEW_HOOK+code;
+}
+/* live preview during streaming — quiet re-render, no error capture, no wipe */
+function livePreview(code){
+  if(!code)return;
+  state.livePrev=true;
+  previewErrors=[]; setErrChip();
+  $('emptyStage').style.display='none';
+  deviceWrap.classList.add('show');
   frame.srcdoc=PREVIEW_HOOK+code;
 }
 function openExternal(){
@@ -1777,6 +1805,7 @@ function importHTML(text,name){
   if(activeProj.versions.length>25)activeProj.versions=activeProj.versions.slice(-25);
   updateHistBadge();
   state.pinFile=false;
+  state.userLockedTab=false;
   setFiles(cloneFiles(files),{final:true});
   switchTab('preview');
   runPreview(state.code);
@@ -1872,7 +1901,7 @@ function addAssistantMsg(){
     +'<div class="msg-body"><span class="cursor"></span></div>';
   chatMessages.appendChild(el);
   scrollChat();
-  return {root:el,pill:el.querySelector('.gen-pill'),stat:el.querySelector('.m-stat'),body:el.querySelector('.msg-body'),card:null,tv:null,tvHost:null,thinkEl:null,thinkText:null,thinkLabel:null,thinkStart:0,thinkDone:false,codeT0:0,markerMode:false};
+  return {root:el,pill:el.querySelector('.gen-pill'),stat:el.querySelector('.m-stat'),body:el.querySelector('.msg-body'),card:null,tv:null,tvHost:null,thinkEl:null,thinkText:null,thinkLabel:null,thinkStart:0,thinkDone:false,codeT0:0,markerMode:false,liveT0:0,lastLiveCode:''};
 }
 function ensureCard(ref){
   if(ref.card)return ref.card;
@@ -2019,6 +2048,7 @@ function restoreVersion(v){
   activeProj.files=cloneFiles(files);
   activeProj.currentVersionId=v.id;
   state.pinFile=false;
+  state.userLockedTab=false;
   setFiles(cloneFiles(files),{final:true});
   saveSoon();
   renderHistory();
@@ -2079,11 +2109,18 @@ function paintDelta(thinkRaw,ansRaw,ref,t0){
     }
     var merged=mergeStream(state.prevFiles||[],P.files);
     setFiles(merged,{streaming:true});
+    /* auto-show the code being written (unless the user pinned a tab) */
     if(P.files.length&&activeTab!=='code'&&!state.userLockedTab)switchTab('code');
     if(P.files.length){
       var card=ensureCard(ref);
       card.querySelector('.f-name').textContent=P.files.length>1?(P.files.length+' files'):P.files[0].path;
       card.querySelector('.f-size').textContent=fmtBytes(P.files.reduce(function(a,x){return a+(x.content||'').length;},0))+(P.open?' · writing…':'');
+    }
+    /* LIVE PREVIEW — re-render the iframe every ~1.5s while code streams */
+    if(P.files.length&&state.code&&state.code!==ref.lastLiveCode&&nowMs()-ref.liveT0>1500){
+      ref.lastLiveCode=state.code;
+      ref.liveT0=nowMs();
+      livePreview(state.code);
     }
     ref.stat.textContent='▲ '+ansRaw.length.toLocaleString()+' chars';
     scrollChat();
@@ -2134,10 +2171,12 @@ function finishBuild(raw,ref,t0,firstTok,aborted,stop){
       state.pinFile=false;
       setFiles(cloneFiles(merged),{final:true});
       if(!state.userLockedTab)switchTab('preview');
+      state.livePrev=false;
       if(state.code)runPreview(state.code);
       else toast('No HTML file in the output — only partial assets were returned','err');
       toast((aborted?'Stopped · partial build rendered · ':'Build complete · ')+fmtDur(dur));
     }else if(aborted){
+      state.livePrev=false;
       toast('Generation stopped','err');
     }
     if(truncated)toast('Output hit the token limit — page may be cut off. Raise Max output tokens in Settings.','err');
@@ -2149,6 +2188,8 @@ function finishBuild(raw,ref,t0,firstTok,aborted,stop){
   }catch(err){
     try{ console.error('finish:',err&&err.message); }catch(e){}
   }
+  state.livePrev=false;
+  state.userLockedTab=false;  /* unlock for the next build */
   state.streaming=false; state.ctrl=null; state.mode='build';
   setStatus('ready');
   updateBusyUI();
@@ -2163,6 +2204,8 @@ function finishBuild(raw,ref,t0,firstTok,aborted,stop){
   }
 }
 function failBuild(err,ref,raw){
+  state.livePrev=false;
+  state.userLockedTab=false;
   state.streaming=false; state.ctrl=null; state.mode='build';
   setStatus('error');
   updateBusyUI();
@@ -2322,6 +2365,7 @@ function regenerate(){
     if(msgs[i].role==='user'){ state.lastPrompt=msgs[i].content.slice(0,90); break; }
   }
   state.prevFiles=cloneFiles(activeProj.files);
+  state.userLockedTab=false; state.pinFile=false;
   saveSoon();
   rebuildChat();
   runCompletion();
@@ -2429,6 +2473,27 @@ function closePops(){
   $('langPop').classList.remove('open');
   $('libsPop').classList.remove('open');
 }
+/* viewport-positioned popover: flips up/down, clamps to edges, never clipped */
+function placePop(btn,pop){
+  pop.style.position='fixed';
+  pop.style.bottom='auto';
+  pop.style.right='auto';
+  var r=btn.getBoundingClientRect();
+  var pw=pop.offsetWidth, ph=pop.offsetHeight, margin=12;
+  var maxH=window.innerHeight-margin*2;
+  if(ph>maxH){ pop.style.maxHeight=maxH+'px'; ph=maxH; } else { pop.style.maxHeight=''; }
+  var top=r.top-ph-10;
+  if(top<margin){
+    top=r.bottom+10;
+    if(top+ph>window.innerHeight-margin) top=window.innerHeight-margin-ph;
+    if(top<margin) top=margin;
+  }
+  var left=r.left;
+  if(left+pw>window.innerWidth-margin) left=window.innerWidth-margin-pw;
+  if(left<margin) left=margin;
+  pop.style.top=top+'px';
+  pop.style.left=left+'px';
+}
 function renderLangPop(){
   var pop=$('langPop');
   pop.innerHTML='<div class="lhead">STACK</div>';
@@ -2472,17 +2537,21 @@ function renderLibsPop(){
   e.stopPropagation();
   var was=$('langPop').classList.contains('open');
   closePops();
-  if(!was){ renderLangPop(); $('langPop').classList.add('open'); }
+  if(!was){ renderLangPop(); $('langPop').classList.add('open'); placePop($('langBtn'),$('langPop')); }
 });
  $('libsBtn').addEventListener('click',function(e){
   e.stopPropagation();
   var was=$('libsPop').classList.contains('open');
   closePops();
-  if(!was){ renderLibsPop(); $('libsPop').classList.add('open'); }
+  if(!was){ renderLibsPop(); $('libsPop').classList.add('open'); placePop($('libsBtn'),$('libsPop')); }
 });
 document.addEventListener('click',function(e){
-  if(!e.target.closest('.langwrap')&&!e.target.closest('.libswrap'))closePops();
+  var t=e.target;
+  if(t&&t.closest&&!t.closest('.langwrap')&&!t.closest('.libswrap'))closePops();
 });
+ $('chatScroll').addEventListener('scroll',closePops);
+ $('homeView').addEventListener('scroll',closePops);
+window.addEventListener('resize',closePops);
 
 /* ============ HOME ============ */
 var SUGGESTIONS=[
