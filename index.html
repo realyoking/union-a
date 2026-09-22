@@ -17,7 +17,7 @@
     --accent:#EE5A1E; --accent-hi:#FF6E31; --accent-soft:rgba(238,90,30,.12);
     --ok:#A9B665; --err:#E5534B; --mod:#D9A441;
     --sans:'Space Grotesk',sans-serif; --mono:'JetBrains Mono',monospace;
-    --side-w:248px; --chat-w:400px; --r:14px;
+    --chat-w:410px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -38,22 +38,15 @@
   @keyframes blink{50%{opacity:0}}
   @keyframes pulse{0%{box-shadow:0 0 0 0 var(--accent-soft)}100%{box-shadow:0 0 0 7px transparent}}
   @keyframes rise{from{opacity:0;transform:translateY(7px)}}
-  /* shimmer text */
-  .shimmer{background:linear-gradient(90deg,#55554F 25%,#EDEDEA 50%,#55554F 75%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 1.5s linear infinite}
   @keyframes shim{from{background-position:200% 0}to{background-position:-200% 0}}
-  /* blur-in-up by character */
-  .bchar{display:inline-block;opacity:0;filter:blur(7px);transform:translateY(9px);animation:bcharin .55s cubic-bezier(.22,1,.36,1) forwards}
-  @keyframes bcharin{to{opacity:1;filter:blur(0);transform:none}}
-  .blockblur{animation:blockblur .6s cubic-bezier(.22,1,.36,1) both}
-  @keyframes blockblur{from{opacity:0;filter:blur(8px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:none}}
+  .shimmer{background:linear-gradient(90deg,#5A5A56 25%,#EDEDEA 50%,#5A5A56 75%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 1.5s linear infinite}
 
   .hljs-comment,.hljs-quote{color:#5E5E58;font-style:italic}
   .hljs-keyword,.hljs-selector-tag,.hljs-doctag{color:#E08763}
   .hljs-string,.hljs-regexp,.hljs-addition{color:#A9B665}
   .hljs-number,.hljs-literal,.hljs-attr{color:#D9A441}
   .hljs-name,.hljs-tag{color:#D6D6D0}
-  .hljs-title,.hljs-function .hljs-title{color:#EDEDEA}
-  .hljs-built_in,.hljs-type{color:#C9C9C4}
+  .hljs-title{color:#EDEDEA}
   .hljs-meta{color:#8A8A85}
 
   .fatal{position:fixed;left:14px;bottom:14px;z-index:3000;max-width:540px;background:#1C0E0A;border:1px solid var(--err);border-left:3px solid var(--err);border-radius:12px;padding:12px 14px;box-shadow:0 14px 44px rgba(0,0,0,.6);display:none}
@@ -63,74 +56,68 @@
   .fatal button{margin-top:9px;font:500 9.5px var(--mono);letter-spacing:.14em;color:var(--ink-dim);background:none;border:1px solid var(--line);border-radius:8px;padding:4px 9px;cursor:pointer}
   .fatal button:hover{color:var(--ink)}
 
-  /* ============ SHELL · sidebar + main ============ */
   .shell{height:100dvh;display:flex}
-  .side{width:var(--side-w);flex:none;display:flex;flex-direction:column;background:var(--bg);border-right:1px solid var(--line-soft)}
-  body.fs .side,body.fs .work-top{display:none}
-  .side-brand{display:flex;align-items:center;gap:10px;padding:14px 14px 10px}
-  .side-brand .mark{width:22px;height:22px;color:var(--accent);flex:none}
+  /* ============ SIDEBAR ============ */
+  .side{width:236px;flex:none;border-right:1px solid var(--line-soft);background:var(--bg);display:flex;flex-direction:column;min-height:0}
+  .side-brand{display:flex;align-items:center;gap:10px;padding:16px 14px 12px}
   .sb-name{font:600 14px var(--sans)}
-  .sb-sub{font:400 8px var(--mono);letter-spacing:.22em;color:var(--ink-dim);margin-top:2px}
-  .side-new{margin:4px 12px 10px;display:flex;align-items:center;gap:9px;padding:9px 12px;border:1px dashed var(--line);background:none;border-radius:11px;color:var(--ink-dim);cursor:pointer;font:500 11px var(--mono);letter-spacing:.08em;transition:color .15s,border-color .15s}
+  .sb-sub{font:400 8px var(--mono);color:var(--ink-dim);letter-spacing:.22em;text-transform:uppercase;margin-top:3px}
+  .side-new{margin:2px 12px 12px;display:flex;align-items:center;gap:9px;padding:9px 12px;border:1px dashed var(--line);background:none;border-radius:11px;color:var(--ink-dim);cursor:pointer;font:500 10.5px var(--mono);letter-spacing:.1em;transition:color .15s,border-color .15s}
   .side-new:hover{color:var(--accent);border-color:var(--accent)}
   .side-new svg{width:13px;height:13px}
-  .side-sec{display:flex;align-items:center;padding:8px 16px 6px;font:500 9px var(--mono);letter-spacing:.24em;color:var(--ink-faint)}
-  .side-count{margin-left:auto;color:var(--ink-faint);letter-spacing:.05em}
-  .side-list{flex:1;overflow-y:auto;padding:2px 8px 8px}
-  .s-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;cursor:pointer}
+  .side-sec{display:flex;align-items:center;padding:6px 16px 8px;font:500 9px var(--mono);letter-spacing:.24em;color:var(--ink-faint)}
+  .side-count{margin-left:auto;color:var(--ink-faint)}
+  .side-list{flex:1;overflow-y:auto;padding:0 8px 8px;min-height:0}
+  .s-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:9px;cursor:pointer}
   .s-item:hover{background:var(--bg3)}
   .s-item.on{background:var(--bg3)}
-  .s-dot{width:8px;height:8px;border-radius:2.5px;background:var(--ink-faint);flex:none}
+  .s-dot{width:7px;height:7px;border-radius:2px;background:var(--ink-faint);flex:none}
   .s-item.on .s-dot{background:var(--accent)}
+  .s-item.on .s-name{color:var(--accent)}
   .s-name{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 12.5px var(--sans);color:var(--ink-2)}
-  .s-item.on .s-name{color:var(--ink)}
   .s-time{font:400 9px var(--mono);color:var(--ink-faint);flex:none}
-  .s-del{opacity:0;width:22px;height:22px;border:none;flex:none}
+  .s-del{opacity:0;width:24px;height:24px;border:none}
   .s-item:hover .s-del{opacity:1}
-  .s-del svg{width:11px;height:11px}
+  .s-del svg{width:12px;height:12px}
   .s-del.confirm{color:var(--err);opacity:1}
-  .side-empty{padding:14px 12px;font:400 10.5px var(--mono);color:var(--ink-faint);text-align:center}
+  .side-empty{padding:16px 10px;text-align:center;font:400 10.5px var(--mono);color:var(--ink-faint)}
   .side-foot{flex:none;border-top:1px solid var(--line-soft);padding:8px}
-  .side-item{width:100%;display:flex;align-items:center;gap:9px;padding:8px 10px;border:none;background:none;border-radius:10px;color:var(--ink-dim);cursor:pointer;font:500 12px var(--sans);transition:color .15s,background .15s}
-  .side-item:hover{color:var(--ink);background:var(--bg3)}
+  .side-item{display:flex;align-items:center;gap:9px;width:100%;padding:8px 10px;border:0;background:none;border-radius:9px;color:var(--ink-dim);cursor:pointer;font:500 12px var(--sans)}
+  .side-item:hover{background:var(--bg3);color:var(--ink)}
   .side-item svg{width:14px;height:14px}
-  .side-conn{width:100%;display:flex;align-items:center;gap:8px;margin-top:2px;padding:8px 10px;border:none;background:none;border-radius:10px;color:var(--ink-faint);cursor:pointer;font:400 10px var(--mono);letter-spacing:.04em;transition:color .15s,background .15s;text-align:left}
-  .side-conn:hover{color:var(--ink-2);background:var(--bg3)}
-  .side-conn span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .side-conn{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border:0;background:none;border-radius:9px;cursor:pointer;font:400 10px var(--mono);color:var(--ink-faint);text-align:left}
+  .side-conn:hover{background:var(--bg3);color:var(--ink-dim)}
+  .side-conn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
   .main{flex:1;min-width:0;display:flex;flex-direction:column}
-
-  /* ============ HOME · centered composer ============ */
-  .home{flex:1;display:none;flex-direction:column;overflow-y:auto;background:var(--bg2)}
-  .home-inner{flex:none;display:flex;flex-direction:column;align-items:center;padding:9vh 24px 20px;text-align:center}
-  .home-h{font:600 clamp(28px,4.4vw,44px)/1.12 var(--sans);letter-spacing:-.02em}
-  .home-h .acc{color:var(--accent)}
-  .home-sub{font:400 13px/1.7 var(--sans);color:var(--ink-dim);margin:14px 0 30px;max-width:52ch}
-  .home-comp{width:min(620px,100%);text-align:left}
-  #homeComposerSlot .composer{padding:0}
-  #homeComposerSlot .composer-box{border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.4)}
-  #homeComposerSlot .composer-box textarea{font-size:14.5px;padding:16px 17px 6px}
-  .home-chips{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-top:18px}
-  .hchip{font:400 11px var(--mono);color:var(--ink-dim);border:1px solid var(--line);background:var(--bg2);border-radius:999px;padding:7px 14px;cursor:pointer;transition:color .15s,border-color .15s,background .15s}
-  .hchip:hover{color:var(--ink);border-color:var(--ink-faint);background:var(--bg3)}
-  .home-recents{flex:none;margin:auto 24px 26px;padding-top:26px}
-  .hr-head{display:flex;align-items:center;font:500 9.5px var(--mono);letter-spacing:.24em;color:var(--ink-faint);margin-bottom:12px}
-  .hr-head .lnk{margin-left:auto;color:var(--ink-dim);letter-spacing:.1em;cursor:pointer;background:none;border:none}
-  .hr-head .lnk:hover{color:var(--ink)}
-  .hr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:9px}
-  .rcard{display:flex;align-items:center;gap:11px;text-align:left;padding:11px 12px;border:1px solid var(--line-soft);background:var(--bg);border-radius:13px;cursor:pointer;transition:border-color .15s,background .15s}
+  /* ============ HOME ============ */
+  .home{flex:1;display:none;flex-direction:column;min-height:0;overflow-y:auto}
+  .home.on{display:flex}
+  .home-hero{flex:none;display:flex;flex-direction:column;align-items:center;text-align:center;padding:9vh 24px 30px}
+  .home-h{font:600 34px/1.15 var(--sans);letter-spacing:-.02em}
+  .home-h .h2{color:var(--accent)}
+  .home-sub{font:400 13px/1.7 var(--sans);color:var(--ink-dim);margin:12px 0 30px;max-width:46ch}
+  .home-comp{width:min(620px,92%)}
+  .home-chips{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;width:min(680px,94%);margin-top:16px}
+  .hchip{font:400 10.5px var(--mono);color:var(--ink-dim);border:1px solid var(--line-soft);background:var(--bg2);border-radius:999px;padding:6px 12px;cursor:pointer;transition:color .15s,border-color .15s,background .15s}
+  .hchip:hover{color:var(--ink);border-color:var(--bg4);background:var(--bg3)}
+  .home-recents{flex:none;width:min(880px,94%);margin:6px auto 30px;padding:0 4px}
+  .hr-head{display:flex;align-items:center;font:500 9px var(--mono);letter-spacing:.24em;color:var(--ink-faint);margin:14px 2px 10px}
+  .hr-head .lnk{margin-left:auto;background:none;border:0;color:var(--ink-dim);font:500 10.5px var(--mono);cursor:pointer}
+  .hr-head .lnk:hover{color:var(--accent)}
+  .hr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+  .rcard{display:flex;align-items:center;gap:11px;text-align:left;padding:11px 12px;border:1px solid var(--line-soft);background:var(--bg2);border-radius:13px;cursor:pointer;transition:border-color .15s,background .15s}
   .rcard:hover{border-color:var(--bg4);background:var(--bg3)}
-  .rc-tile{width:30px;height:30px;border-radius:9px;background:var(--bg4);display:grid;place-items:center;font:600 12px var(--mono);color:var(--ink-dim);flex:none}
+  .rc-tile{width:34px;height:34px;border-radius:9px;background:var(--bg4);display:grid;place-items:center;font:600 13px var(--mono);color:var(--accent);flex:none}
   .rc-txt{min-width:0}
-  .rc-name{display:block;font:500 12.5px var(--sans);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .rc-time{display:block;font:400 9.5px var(--mono);color:var(--ink-faint);margin-top:2px}
+  .rc-name{display:block;font:600 12.5px var(--sans);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rc-time{display:block;font:400 9.5px var(--mono);color:var(--ink-faint);margin-top:3px}
 
-  /* ============ WORK VIEW ============ */
+  /* ============ WORK ============ */
   .work{flex:1;display:none;flex-direction:column;min-height:0}
   .work.on{display:flex}
-  .home.on{display:flex}
-  .work-top{height:52px;flex:none;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--line-soft);background:rgba(10,10,10,.82);backdrop-filter:blur(14px);z-index:500}
-  .proj-name{background:transparent;border:1px solid transparent;outline:0;color:var(--ink);font:600 13px var(--sans);padding:6px 10px;border-radius:9px;width:200px;text-overflow:ellipsis;transition:background .15s,border-color .15s}
+  .topbar{height:52px;flex:none;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--line-soft);background:rgba(10,10,10,.82);backdrop-filter:blur(14px);z-index:500}
+  .proj-name{background:transparent;border:1px solid transparent;outline:0;color:var(--ink);font:600 13px var(--sans);padding:6px 10px;border-radius:9px;width:190px;text-overflow:ellipsis;transition:background .15s,border-color .15s}
   .proj-name:hover{background:var(--bg3)}
   .proj-name:focus{border-color:var(--accent);background:var(--bg3)}
   .icon-btn{width:32px;height:32px;display:grid;place-items:center;border:none;background:transparent;color:var(--ink-dim);border-radius:9px;cursor:pointer;transition:color .15s,background .15s;position:relative;flex:none}
@@ -141,8 +128,8 @@
   .dot{width:7px;height:7px;border-radius:50%;background:var(--ink-faint);flex:none}
   .dot.on{background:var(--accent);animation:pulse 1.1s infinite}
   .dot.err{background:var(--err)}
-  .chip-model{display:flex;align-items:center;gap:8px;font:500 11px var(--mono);color:var(--ink-2);background:var(--bg3);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;max-width:240px;transition:border-color .15s,color .15s}
-  .chip-model:hover{border-color:var(--ink-faint);color:var(--ink)}
+  .chip-model{display:flex;align-items:center;gap:8px;font:500 11px var(--mono);color:var(--ink-2);background:var(--bg3);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;max-width:240px;transition:border-color .15s}
+  .chip-model:hover{border-color:var(--ink-faint)}
   .chip-model i{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
   .chip-model span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
@@ -152,14 +139,14 @@
   .divider::before{content:'';position:absolute;left:2px;top:0;bottom:0;width:1px;background:transparent;transition:background .15s}
   .divider:hover::before,.divider.drag::before{background:var(--accent)}
   .stage{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--bg2)}
-  body.fs .chat,body.fs .divider{display:none}
-  .stage-body.dragover::after{content:'DROP .HTML FILE';position:absolute;inset:8px;border:2px dashed var(--accent);border-radius:var(--r);display:grid;place-items:center;font:600 11px var(--mono);letter-spacing:.3em;color:var(--accent);background:rgba(238,90,30,.06);z-index:20;pointer-events:none}
+  body.fs .side,body.fs .topbar,body.fs .chat,body.fs .divider{display:none}
+  .stage-body.dragover::after{content:'DROP .HTML FILE';position:absolute;inset:8px;border:2px dashed var(--accent);border-radius:14px;display:grid;place-items:center;font:600 11px var(--mono);letter-spacing:.3em;color:var(--accent);background:rgba(238,90,30,.06);z-index:20;pointer-events:none}
 
   .chat-head{height:44px;flex:none;display:flex;align-items:center;gap:10px;padding:0 16px;border-bottom:1px solid var(--line-soft)}
   .chat-head .label{font:500 10px var(--mono);letter-spacing:.22em;color:var(--ink-dim)}
   .chat-head .count{font:400 10px var(--mono);color:var(--ink-faint)}
   .chat-head .icon-btn{margin-left:auto;width:28px;height:28px}
-  .chat-scroll{flex:1;overflow-y:auto;padding:8px 18px 12px}
+  .chat-scroll{flex:1;overflow-y:auto;padding:8px 18px 18px}
 
   .msg{padding:14px 0 12px;border-bottom:1px solid var(--line-soft);animation:rise .25s ease both}
   .msg:last-child{border-bottom:none}
@@ -174,6 +161,10 @@
   .msg-body p{margin:0 0 8px}.msg-body p:last-child{margin-bottom:0}
   .msg-body strong{color:var(--ink);font-weight:600}
   .msg-body code{font:400 11.5px var(--mono);background:var(--bg3);border:1px solid var(--line-soft);padding:1px 5px;border-radius:6px;color:var(--accent-hi)}
+  .blockblur{animation:blockin .5s cubic-bezier(.22,1,.36,1) both}
+  @keyframes blockin{from{opacity:0;filter:blur(6px);transform:translateY(6px)}}
+  .bchar{display:inline-block;opacity:0;filter:blur(6px);transform:translateY(8px);animation:bcharin .5s cubic-bezier(.22,1,.36,1) forwards}
+  @keyframes bcharin{to{opacity:1;filter:blur(0);transform:none}}
   .writing{display:inline-flex;align-items:center;gap:7px;font:500 9.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-top:8px}
   .writing i{width:6px;height:6px;background:var(--accent);animation:blink 1s steps(1) infinite}
   .cursor{display:inline-block;width:7px;height:13px;background:var(--accent);margin-left:3px;vertical-align:-2px;animation:blink 1s steps(1) infinite;border-radius:1px}
@@ -181,20 +172,20 @@
   .regen{margin-top:11px;display:inline-flex;align-items:center;gap:6px;font:500 9.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);background:none;border:none;cursor:pointer;padding:0;transition:color .15s}
   .regen:hover{color:var(--accent)}
   .regen svg{width:11px;height:11px}
-  .vchip{display:inline-flex;align-items:center;gap:7px;margin-top:11px;font:500 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-dim)}
+  .vchip{font:500 10px var(--mono);letter-spacing:.1em;color:var(--ink-dim);display:inline-flex;gap:6px;margin-top:11px}
   .vchip.ok{color:var(--ok)}
   .vchip.fix{color:var(--accent)}
 
-  /* thinking panel */
-  .think{margin:2px 0 10px;border:1px solid var(--line-soft);border-radius:12px;background:var(--bg2);width:100%;overflow:hidden}
-  .think-head{display:flex;align-items:center;gap:8px;width:100%;padding:9px 12px;background:none;border:none;color:var(--ink-dim);cursor:pointer;font:500 11px var(--mono);letter-spacing:.06em;text-align:left}
-  .think-head svg{width:13px;height:13px;flex:none}
-  .think-head .tchev{margin-left:auto;display:flex;color:var(--ink-faint)}
-  .think-head .tchev svg{width:11px;height:11px;transition:transform .18s}
-  .think.open .think-head .tchev svg{transform:rotate(180deg)}
-  .think-body{display:none;padding:0 12px 11px;max-height:240px;overflow-y:auto}
+  .think{margin:2px 0 10px;border:1px solid var(--line-soft);border-radius:12px;background:var(--bg2);overflow:hidden;width:fit-content;max-width:100%}
+  .think-head{display:flex;align-items:center;gap:8px;width:100%;padding:8px 11px;background:none;border:0;color:var(--ink-dim);cursor:pointer;font:500 11px var(--mono)}
+  .think-head:hover{color:var(--ink-2)}
+  .think-head svg{width:13px;height:13px;color:var(--accent)}
+  .tchev{margin-left:8px;display:flex}
+  .tchev svg{width:11px;height:11px;color:var(--ink-faint);transition:transform .18s}
+  .think.open .tchev svg{transform:rotate(180deg)}
+  .think-body{display:none;padding:0 12px 10px;max-height:220px;overflow:auto}
   .think.open .think-body{display:block}
-  .th-text{font:400 11.5px/1.75 var(--mono);color:var(--ink-dim);white-space:pre-wrap;word-break:break-word}
+  .th-text{font:400 11.5px/1.7 var(--mono);color:var(--ink-dim);white-space:pre-wrap}
 
   .codecard{display:flex;align-items:center;gap:10px;margin-top:13px;padding:10px 11px;border:1px solid var(--line-soft);border-radius:12px;background:var(--bg2)}
   .codecard .f-ic{width:14px;height:14px;color:var(--accent);flex:none;display:flex}
@@ -224,7 +215,8 @@
   .task.nudge{animation:tnudge .3s cubic-bezier(.22,1,.36,1)}
   @keyframes tnudge{0%{transform:translateX(0)}40%{transform:translateX(6px)}70%{transform:translateX(-2px)}100%{transform:translateX(0)}}
 
-  .composer{padding:12px 16px 16px}
+  /* ============ COMPOSER ============ */
+  .composer{flex:none;padding:12px 16px 16px}
   .composer-box{border:1px solid var(--line);border-radius:18px;background:var(--bg2);transition:border-color .15s,box-shadow .15s;box-shadow:0 2px 12px rgba(0,0,0,.25)}
   .composer-box:focus-within{border-color:var(--ink-faint);box-shadow:0 4px 20px rgba(0,0,0,.35)}
   .refine{display:none;gap:6px;flex-wrap:wrap;padding:11px 12px 0}
@@ -233,13 +225,33 @@
   .rchip:hover{color:var(--ink);border-color:var(--ink-faint);background:var(--bg3)}
   .composer-box textarea{display:block;width:100%;background:transparent;border:0;outline:0;resize:none;color:var(--ink);font:400 13.5px/1.55 var(--sans);padding:13px 14px 5px;max-height:170px}
   .composer-box textarea::placeholder{color:var(--ink-faint)}
-  .composer-row{display:flex;align-items:center;gap:8px;padding:6px 8px 8px 10px}
+  .composer-row{display:flex;align-items:center;gap:7px;padding:6px 8px 8px 10px;flex-wrap:wrap}
+  .langwrap,.libswrap{position:relative}
+  .toolbtn{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border:1px solid var(--line);background:transparent;color:var(--ink-dim);border-radius:999px;font:500 10.5px var(--mono);cursor:pointer;transition:color .15s,border-color .15s,background .15s;white-space:nowrap}
+  .toolbtn:hover{color:var(--ink);border-color:var(--ink-faint)}
+  .toolbtn.on{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+  .toolbtn svg{width:12px;height:12px;flex:none}
+  .toolbtn .tchev2{width:10px;height:10px;color:var(--ink-faint)}
+  .pop2{position:absolute;bottom:calc(100% + 10px);left:0;width:300px;background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:8px;display:none;z-index:700;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  .pop2.open{display:block;animation:rise .18s ease}
+  .pop2.right{left:auto;right:0}
+  .lhead{font:500 9px var(--mono);letter-spacing:.24em;color:var(--ink-faint);padding:6px 10px 8px}
+  .litem{display:flex;align-items:flex-start;gap:10px;width:100%;text-align:left;padding:8px 10px;border:0;background:none;border-radius:9px;cursor:pointer}
+  .litem:hover{background:var(--bg3)}
+  .li-dot{width:7px;height:7px;border-radius:2px;background:var(--ink-faint);margin-top:5px;flex:none}
+  .litem.on .li-dot{background:var(--accent)}
+  .litem b{display:block;font:600 12px var(--sans);color:var(--ink)}
+  .litem.on b{color:var(--accent)}
+  .litem i{display:block;font:400 9.5px var(--mono);font-style:normal;color:var(--ink-faint);margin-top:2px}
+  .lcheck{margin-left:auto;color:var(--ok);opacity:0;flex:none;display:flex;margin-top:2px}
+  .litem.on .lcheck{opacity:1}
+  .lcheck svg{width:13px;height:13px}
+  .lnote{font:400 9.5px/1.6 var(--mono);color:var(--ink-faint);padding:8px 10px 4px}
   .enh{width:30px;height:30px;display:grid;place-items:center;border:none;background:transparent;color:var(--ink-dim);border-radius:9px;cursor:pointer;transition:color .15s,background .15s;flex:none}
   .enh:hover{color:var(--accent);background:var(--bg3)}
   .enh svg{width:14px;height:14px}
   .enh.busy{color:var(--accent);background:var(--accent-soft)}
   .enh.busy svg{animation:spin .8s linear infinite}
-  .enh.on{color:var(--accent);background:var(--accent-soft)}
   .hint{font:400 10px var(--mono);color:var(--ink-faint);letter-spacing:.03em}
   .charc{font:400 9.5px var(--mono);color:var(--ink-faint)}
   .send{margin-left:auto;width:34px;height:34px;border:none;display:grid;place-items:center;cursor:pointer;background:var(--bg4);color:var(--ink-faint);transition:background .15s,color .15s;border-radius:50%;flex:none}
@@ -298,7 +310,7 @@
   .empty-code .t2{font:400 11px/1.8 var(--mono);color:var(--ink-faint);max-width:40ch}
   .code-cols{position:absolute;inset:0;display:none}
   .code-cols.show{display:flex}
-  .ftree{width:208px;flex:none;border-right:1px solid var(--line-soft);background:var(--bg2);overflow-y:auto;padding:12px 8px}
+  .ftree{width:200px;flex:none;border-right:1px solid var(--line-soft);background:var(--bg2);overflow-y:auto;padding:12px 8px}
   .ftree-head{font:500 9px var(--mono);letter-spacing:.26em;color:var(--ink-faint);padding:2px 8px 10px}
   .trow{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;cursor:pointer;font:400 12px var(--mono);color:var(--ink-2);white-space:nowrap;user-select:none}
   .trow:hover{background:var(--bg3);color:var(--ink)}
@@ -400,11 +412,8 @@
   .field textarea{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--ink);font:400 12px/1.65 var(--mono);outline:0;resize:vertical;min-height:64px;transition:border-color .15s}
   .field textarea:focus{border-color:var(--accent)}
   .field .note{font:400 10.5px/1.7 var(--mono);color:var(--ink-faint);margin-top:7px}
-  .checkrow{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;cursor:pointer;transition:border-color .15s}
-  .checkrow:hover{border-color:var(--ink-faint)}
-  .checkrow input{accent-color:var(--accent);margin-top:2px}
-  .checkrow b{display:block;font:500 12.5px var(--sans);color:var(--ink)}
-  .checkrow i{display:block;font:400 10.5px/1.6 var(--mono);font-style:normal;color:var(--ink-faint);margin-top:2px}
+  .check{display:flex;align-items:flex-start;gap:10px;font:400 12px/1.6 var(--sans);color:var(--ink-2);cursor:pointer;margin-bottom:14px}
+  .check input{accent-color:var(--accent);margin-top:2px}
   .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
   .pitem{display:flex;align-items:center;gap:10px;text-align:left;padding:9px 11px;border:1px solid var(--line);background:transparent;border-radius:12px;cursor:pointer;transition:border-color .15s,background .15s;position:relative}
   .pitem:hover{border-color:var(--ink-faint)}
@@ -430,26 +439,15 @@
   .btn.primary{background:var(--accent);border-color:var(--accent);color:#160F08}
   .btn.primary:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
 
-  @media (max-width:960px){.seg{display:none}}
-  @media (max-width:1100px){#homeComposerSlot .composer-box textarea{font-size:13.5px}}
+  @media (max-width:960px){.seg{display:none}.hint{display:none}}
   @media (max-width:860px){
-    .shell{flex-direction:column}
-    .side{width:auto;flex-direction:row;align-items:center;border-right:0;border-bottom:1px solid var(--line-soft);overflow-x:auto;padding:6px 8px}
-    .side-brand{padding:4px 8px}
-    .sb-sub{display:none}
-    .side-new{margin:0 6px}
-    .side-sec,.side-foot{display:none}
-    .side-list{display:flex;gap:6px;padding:0 6px;flex:1}
-    .s-item{flex:none;padding:6px 10px}
-    .s-time,.s-del{display:none}
+    .side{width:190px}
     .workspace{flex-direction:column}
-    .chat{width:auto !important;height:46%;border-right:0;border-bottom:1px solid var(--line-soft)}
+    .chat{width:auto !important;height:47%;border-right:0;border-bottom:1px solid var(--line-soft)}
     .divider{display:none}
-    .hide-sm{display:none}
     .proj-name{width:110px}
     .ftree{display:none}
     .edpath{display:none}
-    .home-inner{padding-top:5vh}
   }
 </style>
 </head>
@@ -463,48 +461,48 @@
 
 <div class="shell">
 
-  <!-- ======= SIDEBAR ======= -->
+  <!-- ============ SIDEBAR ============ -->
   <aside class="side">
     <div class="side-brand">
       <span id="sideMark" style="display:flex"></span>
       <div>
         <div class="sb-name">Union-α</div>
-        <div class="sb-sub">CODING PLAYGROUND</div>
+        <div class="sb-sub">Playground</div>
       </div>
     </div>
     <button class="side-new" id="sideNew"><span data-ic="plus" style="display:flex"></span>NEW PROJECT</button>
     <div class="side-sec"><span>RECENTS</span><span class="side-count" id="sideCount"></span></div>
     <div class="side-list" id="sideList"></div>
     <div class="side-foot">
-      <button class="side-item" id="sideSettingsBtn"><span data-ic="sliders" style="display:flex"></span><span>Settings</span></button>
-      <button class="side-conn" id="sideConn" title="Connection settings"><span class="dot" id="sideDot"></span><span id="sideConnText"></span></button>
+      <button class="side-item" id="sideSettingsBtn"><span data-ic="sliders" style="display:flex"></span>Settings</button>
+      <button class="side-conn" id="sideConn"><span class="dot" id="sideDot"></span><span id="sideConnText"></span></button>
     </div>
   </aside>
 
   <div class="main">
 
-    <!-- ======= HOME · centered composer ======= -->
-    <div class="home" id="homeView">
-      <div class="home-inner">
-        <h1 class="home-h"><span id="homeT1"></span><span id="homeT2" class="acc"></span></h1>
-        <p class="home-sub">Describe it — Union-α plans the build, streams the code file by file, and double-checks the result before handing it over.</p>
+    <!-- ============ HOME ============ -->
+    <div class="home on" id="homeView">
+      <div class="home-hero">
+        <h1 class="home-h"><span id="homeT1"></span><span class="h2" id="homeT2"></span></h1>
+        <p class="home-sub">Describe it — Union-α plans the build, streams the code file by file, ticks off each task and double-checks the result. Any OpenAI-compatible key works.</p>
         <div class="home-comp" id="homeComposerSlot"></div>
         <div class="home-chips" id="homeChips"></div>
       </div>
-      <div class="home-recents" id="homeRecents"></div>
+      <div class="home-recents" id="homeRecents" style="display:none"></div>
     </div>
 
-    <!-- ======= WORK VIEW ======= -->
+    <!-- ============ WORK ============ -->
     <div class="work" id="workView">
-      <header class="work-top">
+      <header class="topbar">
         <input class="proj-name" id="projName" spellcheck="false" autocomplete="off" />
         <div class="tb-spacer"></div>
         <div class="tb-status"><span class="dot" id="statusDot"></span><span id="statusText">READY</span></div>
-        <button class="chip-model hide-sm" id="modelChip" title="Connection settings"><i></i><span id="modelChipText"></span></button>
-        <button class="icon-btn hide-sm" id="settingsBtn" title="Settings (Ctrl/⌘ + ,)" data-ic="sliders"></button>
+        <button class="chip-model" id="modelChip" title="Connection settings"><i></i><span id="modelChipText"></span></button>
+        <button class="icon-btn" id="settingsBtn" title="Settings (Ctrl/⌘ + ,)" data-ic="sliders"></button>
       </header>
 
-      <div class="workspace" id="workspace">
+      <main class="workspace" id="workspace">
         <section class="chat">
           <div class="chat-head">
             <span class="label">CONSOLE</span>
@@ -552,7 +550,7 @@
                 <div class="inner">
                   <div class="alpha">α</div>
                   <div class="t1">No output yet</div>
-                  <div class="t2">Send a prompt — the build streams in live,<br>then renders itself right here.</div>
+                  <div class="t2">Send a prompt — the build streams in live,<br>then renders itself right here. Drop an .html file to iterate on it.</div>
                 </div>
               </div>
               <div class="device-wrap" id="deviceWrap">
@@ -606,18 +604,26 @@
             <span id="footStats"></span>
           </footer>
         </section>
-      </div>
+      </main>
     </div>
   </div>
 </div>
 
-<!-- composer (moved between home + chat slots) -->
-<div class="composer" id="composer">
+<!-- ============ COMPOSER (single node, moves between slots) ============ -->
+<div class="composer" id="composer" style="display:none">
   <div class="composer-box">
     <div class="refine" id="refineRow"></div>
     <textarea id="input" rows="1" placeholder="Describe the page you want built…"></textarea>
     <div class="composer-row">
-      <button class="enh" id="thinkBtn" title="Thinking mode — model reasons before building" data-ic="brain"></button>
+      <div class="langwrap">
+        <button class="toolbtn" id="langBtn"><span data-ic="box" style="display:flex"></span><span id="langLabel">HTML·CSS·JS</span><span class="tchev2" data-ic="chevDown" style="display:flex"></span></button>
+        <div class="pop2" id="langPop"></div>
+      </div>
+      <div class="libswrap">
+        <button class="toolbtn" id="libsBtn"><span data-ic="layers" style="display:flex"></span><span id="libsLabel">Libraries</span><span class="tchev2" data-ic="chevDown" style="display:flex"></span></button>
+        <div class="pop2 right" id="libsPop"></div>
+      </div>
+      <button class="toolbtn" id="thinkBtn" style="display:none"><span data-ic="brain" style="display:flex"></span><span>Think</span></button>
       <button class="enh" id="enhBtn" title="Enhance prompt with the model" data-ic="sparkles"></button>
       <span class="hint" id="hint">↵ send · ⇧↵ newline</span>
       <span class="charc" id="charc"></span>
@@ -694,12 +700,7 @@
         <span class="temp-val" id="tempVal">0.7</span>
       </div>
     </div>
-    <div class="field">
-      <label class="checkrow" style="text-transform:none;letter-spacing:0">
-        <input type="checkbox" id="setVerify" />
-        <span><b>Auto double-check builds</b><i>After each build, a strict QA pass asks the model to verify the output is complete and working — if not, it returns fixes that are applied automatically. Uses extra tokens.</i></span>
-      </label>
-    </div>
+    <label class="check"><input type="checkbox" id="setVerify" /> <span>Auto double-check finished builds — a second QA pass that verifies the result or returns corrected files (uses extra tokens).</span></label>
     <div class="field">
       <label>Custom instructions <span class="opt">· optional</span></label>
       <textarea id="setSysExtra" placeholder="e.g. Always use dark themes. Prefer system fonts."></textarea>
@@ -718,7 +719,7 @@
 <script>
 'use strict';
 
-/* ============ ERROR TRAP (filtered, deduped, auto-hides) ============ */
+/* ============ ERROR TRAP ============ */
 var fatalTimer=null, fatalSeen={};
 function showFatal(msg){
   msg=String(msg==null?'Unknown error':msg).slice(0,300);
@@ -768,7 +769,7 @@ function modelsUrlFromBase(b){
 var PROVIDERS={
   openrouter:{code:'OR',name:'OpenRouter',desc:'400+ models · one key',kind:'openai',
     url:function(){return 'https://openrouter.ai/api/v1/chat/completions';},
-    models:['stealth/union-alpha','deepseek/deepseek-r1','anthropic/claude-sonnet-4.5','openai/gpt-4.1','google/gemini-2.5-pro','qwen/qwen-2.5-coder-32b-instruct'],
+    models:['stealth/union-alpha','anthropic/claude-sonnet-4.5','openai/gpt-4.1','google/gemini-2.5-pro','deepseek/deepseek-chat','qwen/qwen-2.5-coder-32b-instruct'],
     keyPh:'sk-or-v1-…',keyUrl:'https://openrouter.ai/keys'},
   openai:{code:'OA',name:'OpenAI',desc:'GPT-4.1 · o-series',kind:'openai',
     url:function(){return 'https://api.openai.com/v1/chat/completions';},
@@ -803,30 +804,67 @@ var PROVIDERS={
     models:[],keyPh:'optional for local servers',keyUrl:''}
 };
 
-var SYSTEM_PROMPT =
+/* ============ STACKS ============ */
+var LANGS={
+  'multi':{label:'HTML · CSS · JS',short:'HTML·CSS·JS',desc:'Separate files, classic web',
+    fmt:'OUTPUT FORMAT: split the build into fenced blocks in this order: ```html:index.html , ```css:styles.css and ```js:app.js . index.html links them relatively — a stylesheet link before </head> and a script tag before </body>. The playground assembles them for the live preview. Progress markers: the moment plan item N is complete, write its marker on its own line inside the code — HTML: <!-- ✓ N --> ; CSS or JS: /* ✓ N */ — in order (✓ 1, ✓ 2, …). Markers are stripped automatically before preview, copy and download.'},
+  'single':{label:'Single-file HTML',short:'Single HTML',desc:'Everything inline, one file',
+    fmt:'OUTPUT FORMAT: exactly ONE fenced block ```html:index.html containing the complete page with all CSS inside a <style> tag and all JavaScript inside a <script> tag, inline. Progress markers: the moment plan item N is complete, write its marker on its own line inside the code — <!-- ✓ N --> in HTML regions, /* ✓ N */ in CSS/JS regions — in order. Markers are stripped automatically.'},
+  'react-ts':{label:'React 18 · TypeScript',short:'React·TS',desc:'JSX + types, compiled in-browser',
+    fmt:'OUTPUT FORMAT: React 18 + TypeScript, compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — shell: <!DOCTYPE html> with meta viewport, title, these scripts in <head>: react and react-dom UMD production builds from unpkg (react@18/umd/react.production.min.js, react-dom@18/umd/react-dom.production.min.js), plus https://unpkg.com/@babel/standalone/babel.min.js ; optional <link rel="stylesheet" href="styles.css"> ; body contains <div id="root"></div> and <script type="text/babel" data-presets="react,typescript" src="app.tsx"><\/script> before </body>. (2) ```tsx:app.tsx — the whole app in one file: NO import statements (use globals — destructure const { useState, useEffect, useRef } = React;), render with ReactDOM.createRoot(document.getElementById("root")).render(<App/>), real TypeScript types (interfaces, typed props/state). (3) optional ```css:styles.css . Do NOT use progress markers.'},
+  'react-js':{label:'React 18 · JavaScript',short:'React·JS',desc:'JSX, no types, compiled in-browser',
+    fmt:'OUTPUT FORMAT: React 18 + JavaScript (JSX), compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — shell with react@18 and react-dom@18 UMD production builds + https://unpkg.com/@babel/standalone/babel.min.js in <head>, optional styles link, <div id="root"></div> and <script type="text/babel" data-presets="react" src="app.jsx"><\/script> before </body>. (2) ```jsx:app.jsx — the whole app in one file: NO import statements (const { useState, useEffect } = React), ReactDOM.createRoot(...).render(<App/>). (3) optional ```css:styles.css . Do NOT use progress markers.'},
+  'vue':{label:'Vue 3',short:'Vue 3',desc:'Global build, template-in-JS',
+    fmt:'OUTPUT FORMAT: Vue 3 via CDN global build. Fenced blocks: (1) ```html:index.html — shell with <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"><\/script> in <head>, optional <link rel="stylesheet" href="styles.css">, <div id="app"></div> and <script src="app.js"><\/script> before </body>. (2) ```js:app.js — const { createApp, ref, computed, onMounted, watch } = Vue; createApp({ setup(){ … return { … } }, template: ` …full HTML template… ` }).mount("#app") — template as a template string, no SFC, no imports. (3) optional ```css:styles.css . Do NOT use progress markers.'},
+  'ts':{label:'Vanilla TypeScript',short:'TS',desc:'Typed DOM code, compiled in-browser',
+    fmt:'OUTPUT FORMAT: vanilla TypeScript compiled in the browser with Babel. Fenced blocks: (1) ```html:index.html — full markup with semantic structure and ids/data-attributes for hooks, optional <link rel="stylesheet" href="styles.css">, plus <script src="https://unpkg.com/@babel/standalone/babel.min.js"><\/script> and <script type="text/babel" data-presets="typescript" src="app.ts"><\/script> before </body>. (2) ```ts:app.ts — typed vanilla TS using DOM APIs (querySelector, event listeners, typed state interfaces). (3) optional ```css:styles.css . Do NOT use progress markers.'}
+};
+
+/* ============ UI LIBRARIES ============ */
+var LIBS={
+  tailwind:{label:'Tailwind CSS',desc:'utility-first classes',use:'author styling with Tailwind utility classes',
+    tags:['<script src="https://cdn.tailwindcss.com"><\/script>']},
+  daisyui:{label:'DaisyUI',desc:'Tailwind component classes',use:'use component classes like btn, card, navbar, badge (requires Tailwind — its tag is included automatically)',
+    tags:['<script src="https://cdn.tailwindcss.com"><\/script>','<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css" />']},
+  bootstrap:{label:'Bootstrap 5',desc:'grid + components',use:'use Bootstrap grid and component classes',
+    tags:['<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/css/bootstrap.min.css" rel="stylesheet">','<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.4.3/dist/js/bootstrap.bundle.min.js"><\/script>']},
+  bulma:{label:'Bulma',desc:'flexbox utility CSS',use:'use Bulma columns/box/level classes',
+    tags:['<link href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" rel="stylesheet">']},
+  pico:{label:'Pico CSS',desc:'classless, semantic styling',use:'write semantic HTML — Pico styles it automatically',
+    tags:['<link href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" rel="stylesheet">']},
+  fontawesome:{label:'Font Awesome',desc:'icon font',use:'use <i class="fa-solid fa-…"> icons for iconography',
+    tags:['<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">']},
+  lucide:{label:'Lucide Icons',desc:'inline SVG icons',use:'use <i data-lucide="icon-name"></i> and call lucide.createIcons() after render',
+    tags:['<script src="https://unpkg.com/lucide@latest"><\/script>']},
+  gsap:{label:'GSAP',desc:'pro animation timeline',use:'use gsap.to()/gsap.timeline() for entrance and interaction animation',
+    tags:['<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"><\/script>']},
+  anime:{label:'Anime.js',desc:'lightweight animation',use:'use anime({…}) for staggered/attribute animation',
+    tags:['<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"><\/script>']},
+  three:{label:'Three.js',desc:'WebGL 3D scenes',use:'use the global THREE for 3D scenes (r128 API)',
+    tags:['<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/script>']},
+  alpine:{label:'Alpine.js',desc:'declarative interactivity',use:'use x-data / x-on / x-show directives for light interactivity',
+    tags:['<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"><\/script>']},
+  chartjs:{label:'Chart.js',desc:'charts & graphs',use:'use new Chart(canvas, config) for any data visualisation',
+    tags:['<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"><\/script>']}
+};
+
+/* ============ PROMPTS ============ */
+var BASE_PROMPT =
   'You are Union-alpha, a senior front-end engineer living inside a coding playground.\n' +
   'Every reply follows this exact structure, in order:\n' +
   '1. One or two short sentences describing what you are about to build.\n' +
   '2. A plan: a fenced block tagged "tasks" containing 2-6 checklist lines, one per part of the build. Format each line exactly like "- [ ] Short task" and keep each under 8 words.\n' +
-  '3. The code: ONE fenced block per file, tagged like "html:index.html", "css:styles.css" or "js:app.js".\n' +
-  'Plan-to-code mapping (important):\n' +
-  '- Output the code blocks in the SAME order as the plan tasks, one code block per task when possible. The playground ticks each task off as its part finishes.\n' +
-  '- Prefer splitting into index.html + styles.css + app.js so each task maps to one block.\n' +
-  '- Only for very small pages use a single html:index.html block.\n' +
-  'Progress markers (important): the moment the code for plan item N is complete, write its marker on its own line INSIDE the code, right at that point — in HTML files: <!-- ✓ N --> ; in CSS or JS files: /* ✓ N */ . A 3-task plan means the code contains the markers ✓ 1, ✓ 2 and ✓ 3 in order. Never put markers in prose, only inside code. They are stripped automatically before preview, copy and download.\n' +
-  'Completeness (critical): the reply must be a FINISHED product. Close every tag, close every code fence, include all referenced files, wire every handler. Never end mid-file. A strict automated reviewer checks your output afterwards; incomplete builds fail the review.\n' +
-  'File rules:\n' +
-  '- Larger builds: reference the css/js files relatively with a stylesheet link and a script tag. The playground assembles them for the live preview.\n' +
+  '3. The code: fenced blocks as specified below, output in the SAME order as the plan tasks so each task maps to a part. After each closed code block, add one short line noting the file is done.\n' +
+  'General rules:\n' +
   '- When changing an existing project, output the FULL new content of every file that changes; unchanged files may be omitted (they are kept).\n' +
-  '- All code must run when opened in a browser; CDN links and Google Fonts are allowed, local files are not.\n' +
-  'Design rules:\n' +
+  '- All code must run when opened in a browser. CDN links and Google Fonts are allowed; local files are not.\n' +
   '- Intentional art direction: deliberate palette (no default blue/purple gradient look), distinctive type pairing, real type scale, consistent spacing and radii.\n' +
   '- Every interactive element must genuinely work. No lorem ipsum; write real copy.\n' +
-  '- Responsive down to 360px; respect prefers-reduced-motion; inline SVG icons.\n' +
-  '- Keep prose outside code blocks to 1-2 short sentences.';
+  '- Responsive down to 360px; respect prefers-reduced-motion; inline SVG icons where no icon library is enabled.\n' +
+  '- Keep prose outside code blocks to 1-2 short sentences.\n\n';
 
 var THINK_ADDENDUM =
-  '\n\nTHINKING MODE: Begin your reply with a <think> block containing your brief working reasoning — requirements, layout, palette, file structure, tricky bits (5-10 sentences). Close it with </think>, then continue with the normal reply format. Never mention the think block outside itself.';
+  '\nTHINKING MODE: Begin your reply with a <think> block containing your brief planning reasoning (5-10 sentences: requirements, layout, palette, structure). Close it with </think>, then continue with the normal reply format. Never mention the think block outside itself.\n';
 
 var ENHANCE_SYS =
   'You rewrite rough product ideas into crisp, detailed prompts for a single-page HTML generator. ' +
@@ -835,9 +873,20 @@ var ENHANCE_SYS =
 
 var VERIFY_SYS =
   'You are a strict QA reviewer for generated single-page web apps. You will be given the original request and the generated files. ' +
-  'Check carefully: Is the requested functionality fully implemented (not partial)? Does every file look complete (no cut-off code, no missing closing tags/fences, no placeholder stubs)? Are all referenced files present and linked correctly? Are there obvious syntax errors? ' +
+  'Check carefully: Is the requested functionality fully implemented (not partial)? Does every file look complete (no cut-off code, no missing closing tags, no placeholder stubs)? Are all referenced files present and linked correctly? Are there obvious syntax errors? ' +
   'If EVERYTHING is complete and correct: reply with exactly VERIFIED and nothing else. ' +
-  'Otherwise: reply with one short sentence listing what was wrong, then output the FULL corrected files in the same format (```html:index.html etc). Do not output diffs or snippets.';
+  'Otherwise: reply with one short sentence listing what was wrong, then output the FULL corrected files in the same format. Do not output diffs or snippets.';
+
+function buildLibPrompt(libIds){
+  var ids=libIds||[];
+  if(!ids.length)return '';
+  var lines=[];
+  ids.forEach(function(id){
+    var l=LIBS[id];
+    if(l)lines.push('- '+l.label+': include these exact tags in index.html — '+l.tags.join(' ')+' — and '+l.use+'.');
+  });
+  return '\nUI LIBRARIES — the user enabled these; wire them in and use them meaningfully:\n'+lines.join('\n')+'\n';
+}
 
 /* ============ CONFIG ============ */
 function jget(k,d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(err){ return d; } }
@@ -875,7 +924,7 @@ var state={
 function newProject(){
   return { id:'p'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
     name:'Untitled project', created:Date.now(), updated:Date.now(),
-    messages:[], versions:[], files:[], currentVersionId:null };
+    messages:[], versions:[], files:[], currentVersionId:null, lang:'multi', libs:[] };
 }
 var projects=jget('uap_projects',null) || [newProject()];
 if(!projects.length) projects=[newProject()];
@@ -887,6 +936,9 @@ if(!projects.length) projects=[newProject()];
       if(!Array.isArray(p.files)){
         p.files=(p.code?[ {path:'index.html',lang:'html',content:p.code} ]:[]);
       }
+      if(!p.lang||!LANGS[p.lang]) p.lang='multi';
+      if(!Array.isArray(p.libs)) p.libs=[];
+      p.libs=p.libs.filter(function(id){return !!LIBS[id];});
       p.versions.forEach(function(v){
         if(!Array.isArray(v.files) && v.code) v.files=[{path:'index.html',lang:'html',content:v.code}];
       });
@@ -925,6 +977,8 @@ var PATHS={
   history:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
   sparkles:'<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z"/>',
   brain:'<path d="M12 4a4 4 0 0 0-4 4 4 4 0 0 0-3.7 4A4.3 4.3 0 0 0 8.4 17H10v3h4v-3h1.6a4.3 4.3 0 0 0 4.1-5 4 4 0 0 0-3.7-4 4 4 0 0 0-4-4Z"/>',
+  box:'<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12"/>',
+  layers:'<path d="M12 2 2 7l10 5 10-5-10-5Z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>',
   monitor:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
   tablet:'<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/>',
   smartphone:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M12 18h.01"/>',
@@ -990,8 +1044,6 @@ function friendlyNetErr(e){
   return m||'Unknown error';
 }
 function cloneFiles(fs){ return (fs||[]).map(function(f){ return {path:f.path,content:f.content}; }); }
-
-/* blur-in-up by character */
 function blurInUp(el,text,baseDelay){
   if(REDUCED){ el.textContent=text; return; }
   el.textContent='';
@@ -1006,14 +1058,13 @@ function blurInUp(el,text,baseDelay){
     i++;
   });
 }
-/* per-char on short plain text; whole-block blur otherwise */
 function animateProse(host,html){
   var tmp=document.createElement('div');
   tmp.innerHTML=html;
   var plain=(tmp.textContent||'').trim();
   if(REDUCED||html.indexOf('<code')!==-1||html.indexOf('<strong')!==-1||plain.length>300||!plain){
     host.innerHTML=html;
-    if(!REDUCED&&plain)host.firstElementChild&&host.firstElementChild.classList.add('blockblur');
+    if(!REDUCED&&plain&&host.firstElementChild)host.firstElementChild.classList.add('blockblur');
     return;
   }
   host.innerHTML='';
@@ -1021,8 +1072,6 @@ function animateProse(host,html){
   host.appendChild(p);
   blurInUp(p,plain.replace(/\n+/g,' '),0);
 }
-
-/* <think> splitter */
 function splitThink(raw){
   var s=String(raw||'');
   var m=/<think>([\s\S]*?)(<\/think>|$)/i.exec(s);
@@ -1033,7 +1082,6 @@ function splitThink(raw){
   if(before)answer=before+'\n'+answer;
   return{think:think,answer:answer};
 }
-/* progress markers */
 function countMarkers(raw){
   var re=/(?:<!--|\/\/|\/\*)[ \t]*✓[ \t]*(\d+)/g, m, max=0, s=String(raw||'');
   while((m=re.exec(s))){ var n=parseInt(m[1],10)||0; if(n>max)max=n; }
@@ -1044,7 +1092,7 @@ function stripMarkers(s){
 }
 
 /* ============ MESSAGE PARSER ============ */
-var EXT_LANG={html:'html',htm:'html',css:'css',js:'javascript',mjs:'javascript',json:'json',svg:'html',md:'markdown'};
+var EXT_LANG={html:'html',htm:'html',css:'css',js:'javascript',mjs:'javascript',jsx:'jsx',tsx:'tsx',ts:'typescript',json:'json',svg:'html',md:'markdown'};
 function langFromPath(p){
   var m=/\.([a-z0-9]+)$/i.exec(p||'');
   return m?(EXT_LANG[m[1].toLowerCase()]||''):'';
@@ -1053,6 +1101,9 @@ function defaultPathFor(lang,i){
   if(lang==='html'||lang==='xml')return 'index.html';
   if(lang==='css')return 'styles.css';
   if(lang==='javascript'||lang==='js')return 'app.js';
+  if(lang==='jsx')return 'app.jsx';
+  if(lang==='tsx')return 'app.tsx';
+  if(lang==='typescript'||lang==='ts')return 'app.ts';
   if(lang==='json')return 'data.json';
   return 'file'+(i>0?(i+1):'')+'.txt';
 }
@@ -1131,6 +1182,36 @@ function computeMerged(prev,cur){
   map.forEach(function(v){ arr.push(v); });
   return arr;
 }
+/* inline external scripts while PRESERVING tag attributes (type="text/babel", data-presets…) */
+function inlineScript(html,re,content){
+  return html.replace(re,function(m){
+    var open=m.slice(0,m.indexOf('>')+1);
+    open=open.replace(/\ssrc=["'][^"']*["']/i,'');
+    return open+content+'</script>';
+  });
+}
+function ensureLibs(html){
+  var libs=activeProj.libs||[];
+  if(!libs.length)return html;
+  libs.forEach(function(id){
+    var l=LIBS[id];
+    if(!l)return;
+    l.tags.forEach(function(tag){
+      var m=/(src|href)="([^"]+)"/.exec(tag);
+      var key=m?m[2]:'';
+      if(key && html.indexOf(key)===-1){
+        if(/^\s*<link/i.test(tag)){
+          if(/<\/head>/i.test(html)) html=html.replace(/<\/head>/i,function(){ return tag+'\n</head>'; });
+          else html=tag+html;
+        }else{
+          if(/<\/body>/i.test(html)) html=html.replace(/<\/body>/i,function(){ return tag+'\n</body>'; });
+          else html=html+tag;
+        }
+      }
+    });
+  });
+  return html;
+}
 function assemble(files){
   var fs=files||[];
   var main=fs.find(function(f){return /^index\.html?$/i.test(f.path);})
@@ -1147,15 +1228,15 @@ function assemble(files){
       if(re.test(html)) html=html.replace(re,function(){ return tag; });
       else if(/<\/head>/i.test(html)) html=html.replace(/<\/head>/i,function(){ return tag+'\n</head>'; });
       else html=tag+html;
-    }else if(/\.(m?js)$/i.test(f.path)){
+    }else if(/\.(m?js|jsx|tsx|ts)$/i.test(f.path)){
       var stag='<script data-file="'+esc(base)+'">\n'+f.content+'\n<\/script>';
       var sre=new RegExp('<script[^>]*src=["\'][^"\']*'+escRe(base)+'["\'][^>]*>\\s*<\\/script>','i');
-      if(sre.test(html)) html=html.replace(sre,function(){ return stag; });
+      if(sre.test(html)) html=inlineScript(html,sre,f.content);
       else if(/<\/body>/i.test(html)) html=html.replace(/<\/body>/i,function(){ return stag+'\n</body>'; });
       else html=html+stag;
     }
   });
-  return html;
+  return ensureLibs(html);
 }
 
 /* ============ STREAMING · 3 dialects + reasoning + fallbacks ============ */
@@ -1465,7 +1546,8 @@ codeScroll.addEventListener('scroll',function(){
 });
 function langOf(path){
   if(/\.css$/i.test(path))return 'css';
-  if(/\.(m?js)$/i.test(path))return 'javascript';
+  if(/\.(tsx|ts)$/i.test(path))return 'typescript';
+  if(/\.(m?js|jsx)$/i.test(path))return 'javascript';
   if(/\.json$/i.test(path))return 'json';
   return 'xml';
 }
@@ -1479,7 +1561,7 @@ function hlRender(code,path,streaming){
 function monoFor(f){
   var m=/\.([a-z0-9]+)$/i.exec(f.path||'');
   var ext=m?m[1].toLowerCase():'';
-  var map={'html':'<>','htm':'<>','css':'#','js':'JS','mjs':'JS','json':'{}','svg':'SV','md':'MD','txt':'T'};
+  var map={'html':'<>','htm':'<>','css':'#','js':'JS','mjs':'JS','jsx':'JS','tsx':'TS','ts':'TS','json':'{}','svg':'SV','md':'MD','txt':'T'};
   return map[ext]||'•';
 }
 function stClass(f){ return f.status?('st-'+f.status):''; }
@@ -1674,10 +1756,11 @@ function download(){
   loadJSZip().then(function(){
     var zip=new JSZip();
     state.files.forEach(function(f){ zip.file(f.path,f.content); });
+    zip.file('standalone.html',state.code);
     return zip.generateAsync({type:'blob'});
   }).then(function(blob){
     saveBlob(blob,slug+'.zip');
-    toast('Downloaded '+slug+'.zip · '+state.files.length+' files');
+    toast('Downloaded '+slug+'.zip · '+state.files.length+' files + standalone.html');
   }).catch(function(){
     saveBlob(new Blob([state.code],{type:'text/html'}),slug+'.html');
     toast('ZIP unavailable offline — downloaded assembled single file','err');
@@ -1864,8 +1947,8 @@ function setStatus(mode){
 function updateHint(){
   var h=$('hint');
   if(state.streaming){
-    h.textContent=state.mode==='verify'?'double-checking — esc to stop':'model writing — esc to stop';
     if(state.mode==='verify')h.innerHTML='<span class="shimmer">double-checking…</span>';
+    else h.textContent='model writing — esc to stop';
   }
   else if(state.enhancing)h.innerHTML='<span class="shimmer">enhancing…</span>';
   else h.textContent='↵ send · ⇧↵ newline';
@@ -1955,7 +2038,7 @@ function schedulePaint(fn){
 }
 function paintDelta(thinkRaw,ansRaw,ref,t0){
   try{
-    updateThink(ref,thinkRaw,!/<\/think>/i.test(thinkRaw||'')&&!!thinkRaw);
+    if(thinkRaw)updateThink(ref,thinkRaw,!/<\/think>/i.test(thinkRaw));
     var P=parseMessage(ansRaw);
     ref.body.innerHTML=P.prose.map(proseHtml).join('');
     if(P.tasks.length){
@@ -2016,9 +2099,10 @@ function finishBuild(raw,ref,t0,firstTok,aborted,stop){
   var P=parseMessage(SP.answer);
   var truncated=!!stop&&/length|max_tokens/i.test(stop);
   try{
-    ref.body.innerHTML=P.prose.map(proseHtml).join('')
+    var finalProse=P.prose.map(proseHtml).join('');
+    ref.body.innerHTML=finalProse
       ||(P.files.length?'':'<p style="color:var(--ink-faint)">(no content)</p>');
-    if(P.prose.length)animateProse(ref.body,P.prose.map(proseHtml).join(''));
+    if(P.prose.length)animateProse(ref.body,finalProse);
     if(P.tasks.length){
       if(!ref.tvHost){ ref.tvHost=document.createElement('div'); }
       if(ref.tvHost.parentNode!==ref.body)ref.body.appendChild(ref.tvHost);
@@ -2074,7 +2158,6 @@ function finishBuild(raw,ref,t0,firstTok,aborted,stop){
     +(ut?(' · '+ut.toLocaleString()+' tok'):'')
     +(truncated?' · <span class="trunc-flag">TRUNCATED</span>':'');
   $('input').focus();
-  /* self-check pass */
   if(!aborted&&!truncated&&P.files.length&&P.files.some(function(f){return f.content.trim();})&&cfg.autoVerify){
     setTimeout(function(){ verifyBuild(ref); },400);
   }
@@ -2100,7 +2183,10 @@ function runCompletion(){
   updateBusyUI();
   $('footStats').textContent=PROVIDERS[cfg.provider].name+' · streaming…';
   state.ctrl=new AbortController();
-  var sys=SYSTEM_PROMPT+(cfg.think?THINK_ADDENDUM:'')+(cfg.sysExtra?('\n\nStanding instructions from the user (always apply):\n'+cfg.sysExtra):'');
+  var L=LANGS[activeProj.lang]||LANGS.multi;
+  var sys=BASE_PROMPT+L.fmt+buildLibPrompt(activeProj.libs)
+    +(cfg.think?THINK_ADDENDUM:'')
+    +(cfg.sysExtra?('\n\nStanding instructions from the user (always apply):\n'+cfg.sysExtra):'');
   var t0=nowMs(), firstTok=0, ansRaw='', thinkRaw='';
   streamChat({
     model:cfgModel(),
@@ -2126,7 +2212,7 @@ function runCompletion(){
   });
 }
 
-/* ============ SELF-CHECK (double-check) ============ */
+/* ============ SELF-CHECK ============ */
 function verifyBuild(ref){
   if(state.streaming)return;
   if(!activeProj.files.length||!state.lastPrompt)return;
@@ -2135,7 +2221,6 @@ function verifyBuild(ref){
   }).join('\n\n');
   var vmsg='Original request:\n'+state.lastPrompt+'\n\nGenerated files:\n\n'+filesTxt+
     '\n\nReview the files against the request now.';
-  /* shimmer chip */
   var reg=ref.root.querySelector('.regen');
   var vchip=document.createElement('span');
   vchip.className='vchip';
@@ -2160,7 +2245,6 @@ function verifyBuild(ref){
     var P=parseMessage(SP.answer);
     var fixed=P.files.filter(function(f){return f.content.trim();});
     if(fixed.length){
-      /* apply corrections */
       var merged=computeMerged(activeProj.files,P.files);
       activeProj.files=cloneFiles(merged);
       var vid='v'+Date.now().toString(36);
@@ -2191,7 +2275,7 @@ function verifyBuild(ref){
       vchip.textContent='self-check stopped';
     }else{
       vchip.className='vchip';
-      vchip.textContent='self-check failed — '+(err&&err.message||'error').slice(0,60);
+      vchip.textContent='self-check failed';
     }
   }).finally(function(){
     state.streaming=false; state.ctrl=null; state.mode='build';
@@ -2321,8 +2405,8 @@ input.addEventListener('keydown',function(e){
   else if(state.enhancing){ if(state.enhCtrl)state.enhCtrl.abort(); }
   else send(input.value);
 });
-/* think toggle */
 function syncThinkBtn(){
+  $('thinkBtn').style.display='';
   $('thinkBtn').classList.toggle('on',cfg.think);
   $('thinkBtn').title=cfg.think?'Thinking mode ON — model reasons before building':'Thinking mode — model reasons before building';
 }
@@ -2332,13 +2416,73 @@ function syncThinkBtn(){
   syncThinkBtn();
   toast(cfg.think?'Thinking mode on':'Thinking mode off');
 });
- $('fixBtn').addEventListener('click',function(){
-  if(!previewErrors.length)return;
-  var list=previewErrors.map(function(m){return '- '+m;}).join('\n');
-  previewErrors=[]; setErrChip();
-  send('The live preview is throwing JavaScript errors:\n\n'+list+'\n\nFix the page so it runs without errors. Return the FULL updated files.');
+
+/* ============ STACK + LIBS SELECTORS ============ */
+function syncLangUI(){
+  var L=LANGS[activeProj.lang]||LANGS.multi;
+  $('langLabel').textContent=L.short;
+  var n=(activeProj.libs||[]).length;
+  $('libsLabel').textContent=n?('Libs · '+n):'Libraries';
+  $('libsBtn').classList.toggle('on',n>0);
+}
+function closePops(){
+  $('langPop').classList.remove('open');
+  $('libsPop').classList.remove('open');
+}
+function renderLangPop(){
+  var pop=$('langPop');
+  pop.innerHTML='<div class="lhead">STACK</div>';
+  Object.keys(LANGS).forEach(function(id){
+    var L=LANGS[id];
+    var b=document.createElement('button');
+    b.className='litem'+(id===activeProj.lang?' on':'');
+    b.innerHTML='<span class="li-dot"></span><span style="min-width:0"><b>'+esc(L.label)+'</b><i>'+esc(L.desc)+'</i></span><span class="lcheck">'+icon('check')+'</span>';
+    b.addEventListener('click',function(){
+      activeProj.lang=id;
+      saveSoon(); syncLangUI(); closePops();
+      toast('Stack · '+L.label);
+    });
+    pop.appendChild(b);
+  });
+}
+function renderLibsPop(){
+  var pop=$('libsPop');
+  pop.innerHTML='<div class="lhead">UI LIBRARIES</div>';
+  Object.keys(LIBS).forEach(function(id){
+    var l=LIBS[id];
+    var on=(activeProj.libs||[]).indexOf(id)!==-1;
+    var b=document.createElement('button');
+    b.className='litem'+(on?' on':'');
+    b.innerHTML='<span class="li-dot"></span><span style="min-width:0"><b>'+esc(l.label)+'</b><i>'+esc(l.desc)+'</i></span><span class="lcheck">'+icon('check')+'</span>';
+    b.addEventListener('click',function(){
+      var arr=activeProj.libs||[];
+      var i=arr.indexOf(id);
+      if(i===-1)arr.push(id); else arr.splice(i,1);
+      activeProj.libs=arr;
+      saveSoon(); syncLangUI(); renderLibsPop();
+    });
+    pop.appendChild(b);
+  });
+  var note=document.createElement('div');
+  note.className='lnote';
+  note.textContent='Enabled libraries are taught to the model and injected into the preview automatically.';
+  pop.appendChild(note);
+}
+ $('langBtn').addEventListener('click',function(e){
+  e.stopPropagation();
+  var was=$('langPop').classList.contains('open');
+  closePops();
+  if(!was){ renderLangPop(); $('langPop').classList.add('open'); }
 });
- $('errDismiss').addEventListener('click',function(){ previewErrors=[]; setErrChip(); });
+ $('libsBtn').addEventListener('click',function(e){
+  e.stopPropagation();
+  var was=$('libsPop').classList.contains('open');
+  closePops();
+  if(!was){ renderLibsPop(); $('libsPop').classList.add('open'); }
+});
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.langwrap')&&!e.target.closest('.libswrap'))closePops();
+});
 
 /* ============ HOME ============ */
 var SUGGESTIONS=[
@@ -2365,8 +2509,7 @@ function renderHomeRecents(){
     .sort(function(a,b){return b.updated-a.updated;}).slice(0,6);
   if(!recents.length){ host.innerHTML=''; host.style.display='none'; return; }
   host.style.display='';
-  var html='<div class="hr-head"><span>RECENT PROJECTS</span><button class="lnk" id="hrAll">Browse all →</button></div><div class="hr-grid"></div>';
-  host.innerHTML=html;
+  host.innerHTML='<div class="hr-head"><span>RECENT PROJECTS</span></div><div class="hr-grid"></div>';
   var grid=host.querySelector('.hr-grid');
   recents.forEach(function(p){
     var b=document.createElement('button');
@@ -2376,19 +2519,16 @@ function renderHomeRecents(){
     b.addEventListener('click',function(){ switchProject(p.id); });
     grid.appendChild(b);
   });
-  host.querySelector('#hrAll').addEventListener('click',function(){
-    /* focus sidebar */
-    $('sideList').scrollIntoView({behavior:'smooth',block:'nearest'});
-  });
 }
 
-/* ============ MODE (home ↔ work) ============ */
+/* ============ MODE ============ */
 function updateMode(){
   var home=!activeProj.messages.length;
   $('homeView').classList.toggle('on',home);
   $('workView').classList.toggle('on',!home);
   var slot=home?$('homeComposerSlot'):$('chatComposerSlot');
   var comp=$('composer');
+  comp.style.display='';
   if(comp.parentNode!==slot)slot.appendChild(comp);
   if(home){
     blurInUp($('homeT1'),'What should we ',0);
@@ -2401,8 +2541,7 @@ function updateMode(){
 function renderSideList(){
   var list=$('sideList');
   list.innerHTML='';
-  var sorted=projects.slice().sort(function(a,b){return b.updated-a.updated;});
-  sorted.forEach(function(p){
+  projects.slice().sort(function(a,b){return b.updated-a.updated;}).forEach(function(p){
     var it=document.createElement('div');
     it.className='s-item'+(p.id===activeId?' on':'');
     it.innerHTML='<span class="s-dot"></span><span class="s-name">'+esc(p.name)+'</span>'
@@ -2430,7 +2569,7 @@ function switchProject(id){
   $('projName').value=activeProj.name;
   rebuildChat();
   setFiles(cloneFiles(activeProj.files),{final:true});
-  updateHistBadge(); updateConnUI(); renderRefines();
+  updateHistBadge(); updateConnUI(); renderRefines(); syncLangUI();
   updateMode();
   if(state.code){ switchTab('preview'); runPreview(state.code); }
   else{
@@ -2445,7 +2584,7 @@ function createProject(){
   projects.push(p);
   switchProject(p.id);
   saveNow();
-  if($('input'))$('input').focus();
+  if(input)input.focus();
 }
 function deleteProject(p,btn){
   if(!btn.dataset.armed){
@@ -2683,6 +2822,7 @@ try{
   updateBusyUI();
   renderRefines();
   renderHomeChips();
+  syncLangUI();
   updateMode();
   setStatus('ready');
   setDevice('desktop');
@@ -2692,7 +2832,7 @@ try{
   if(!anyKey&&!cfg.endpoints.custom)openSettings(true);
   else input.focus();
 }catch(err){
-  showFatal(err.message+' · line '+err.lineno);
+  showFatal((err&&err.message?err.message:'init failed')+(err&&err.lineno?' · line '+err.lineno:''));
 }
 </script>
 </body>
